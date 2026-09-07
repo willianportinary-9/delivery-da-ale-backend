@@ -80,6 +80,7 @@ exports.editar = async (req, res) => {
       horarioAbertura,
       horarioFechamento,
       lojaAberta,
+      avisoAtivo,
       aviso
     } = req.body;
 
@@ -141,6 +142,11 @@ exports.editar = async (req, res) => {
       configuracao.lojaAberta =
         lojaAberta;
     }
+
+    if (typeof avisoAtivo === "boolean") {
+  configuracao.avisoAtivo =
+    avisoAtivo;
+}
 
     if (aviso !== undefined) {
       configuracao.aviso =

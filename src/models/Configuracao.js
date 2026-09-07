@@ -53,6 +53,11 @@ const ConfiguracaoSchema = new mongoose.Schema(
       default: true
     },
 
+    avisoAtivo: {
+  type: Boolean,
+  default: true
+},
+
     aviso: {
       type: String,
       default: "",
