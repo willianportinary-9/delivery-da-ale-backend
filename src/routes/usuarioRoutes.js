@@ -7,6 +7,8 @@ const {
   cadastrarUsuario,
   loginUsuario,
   atualizarTelefone,
+  buscarContaAdmin,
+  atualizarContaAdmin,
 } = require("../controllers/usuarioController");
 
 const router = express.Router();
@@ -37,6 +39,20 @@ router.put(
   "/perfil",
   autenticar,
   atualizarTelefone
+);
+
+// CONTA DO ADMINISTRADOR
+
+router.get(
+  "/admin/conta",
+  autenticar,
+  buscarContaAdmin
+);
+
+router.put(
+  "/admin/conta",
+  autenticar,
+  atualizarContaAdmin
 );
 
 module.exports = router;
