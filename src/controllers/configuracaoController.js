@@ -72,17 +72,19 @@ exports.editar = async (req, res) => {
     }
 
     const {
-      nomeLoja,
-      whatsapp,
-      pixChave,
-      pixNome,
-      taxaEntrega,
-      horarioAbertura,
-      horarioFechamento,
-      lojaAberta,
-      avisoAtivo,
-      aviso
-    } = req.body;
+  nomeLoja,
+  whatsapp,
+  nomeEntregador,
+  whatsappEntregador,
+  pixChave,
+  pixNome,
+  taxaEntrega,
+  horarioAbertura,
+  horarioFechamento,
+  lojaAberta,
+  avisoAtivo,
+  aviso
+} = req.body;
 
     const configuracao =
       await buscarConfiguracao();
@@ -117,6 +119,38 @@ exports.editar = async (req, res) => {
       configuracao.whatsapp =
         whatsapp.trim();
     }
+
+    if (nomeEntregador !== undefined) {
+
+  configuracao.nomeEntregador =
+    String(nomeEntregador)
+      .trim();
+
+}
+
+if (whatsappEntregador !== undefined) {
+
+  const numeroEntregador =
+    String(whatsappEntregador)
+      .replace(/\D/g, "");
+
+  if (
+    numeroEntregador &&
+    ![10, 11, 12, 13]
+      .includes(numeroEntregador.length)
+  ) {
+
+    return res.status(400).json({
+      mensagem:
+        "Informe um WhatsApp válido para o entregador."
+    });
+
+  }
+
+  configuracao.whatsappEntregador =
+    numeroEntregador;
+
+}
 
     if (pixChave !== undefined) {
       configuracao.pixChave =

@@ -20,6 +20,18 @@ const ConfiguracaoSchema = new mongoose.Schema(
       trim: true
     },
 
+    nomeEntregador: {
+  type: String,
+  default: "",
+  trim: true
+},
+
+whatsappEntregador: {
+  type: String,
+  default: "",
+  trim: true
+},
+
     pixChave: {
       type: String,
       default: "",
